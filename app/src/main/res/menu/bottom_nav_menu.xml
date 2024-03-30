@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_news"
+        android:icon="@drawable/news_logo"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/navigation_tracker"
+        android:icon="@drawable/map_logo"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/navigation_schedule"
+        android:icon="@drawable/schedule_logo"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/navigation_mail"
+        android:icon="@drawable/mail_logo"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/navigation_service"
+        android:icon="@drawable/service_logo"
+        android:title="@null" />
+
+</menu>
