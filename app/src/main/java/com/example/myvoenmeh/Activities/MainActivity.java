@@ -1,7 +1,8 @@
-package com.example.myvoenmeh;
+package com.example.myvoenmeh.Activities;
 
 import android.os.Bundle;
 
+import com.example.myvoenmeh.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+
     }
 
 }

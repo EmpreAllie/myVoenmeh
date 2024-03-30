@@ -1,4 +1,4 @@
-package com.example.myvoenmeh;
+package com.example.myvoenmeh.Activities;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.myvoenmeh.R;
 
 public class LoginActivity extends AppCompatActivity {
     // Основной метод, вызываемый при создании активности
