@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_news"
-        android:name="com.example.myvoenmeh.ui.news.NewsFragment"
+        android:name="com.my.voenmeh.ui.news.NewsFragment"
         android:label="@null"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/navigation_tracker"
-        android:name="com.example.myvoenmeh.ui.tracker.TrackerFragment"
+        android:name="com.my.voenmeh.ui.tracker.TrackerFragment"
         android:label="@null"
         tools:layout="@layout/fragment_tracker" />
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="com.example.myvoenmeh.ui.schedule.ScheduleFragment"
+        android:name="com.my.voenmeh.ui.schedule.ScheduleFragment"
         android:label="@null"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
         android:id="@+id/navigation_mail"
-        android:name="com.example.myvoenmeh.ui.mail.MailFragment"
+        android:name="com.my.voenmeh.ui.mail.MailFragment"
         android:label="@null"
         tools:layout="@layout/fragment_mail" />
 
     <fragment
         android:id="@+id/navigation_service"
-        android:name="com.example.myvoenmeh.ui.service.ServiceFragment"
+        android:name="com.my.voenmeh.ui.service.ServiceFragment"
         android:label="@null"
         tools:layout="@layout/fragment_service" />
 </navigation>
