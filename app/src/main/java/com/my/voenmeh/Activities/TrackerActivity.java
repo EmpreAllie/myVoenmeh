@@ -4,47 +4,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.my.voenmeh.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-import com.my.voenmeh.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.my.voenmeh.R;
 
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setSelectedItemId(R.id.navigation_news);
-    }
-
-    private ActivityMainBinding binding;
+public class TrackerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_news, R.id.navigation_tracker, R.id.navigation_schedule, R.id.navigation_mail, R.id.navigation_service)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_tracker);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.tracker), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setSelectedItemId(R.id.navigation_news);
+        navView.setSelectedItemId(R.id.navigation_tracker);
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -56,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 else if (id == R.id.navigation_tracker) {
-                    startActivity(new Intent(getApplicationContext(), TrackerActivity.class));
-                    overridePendingTransition(0, 0);
+
                     return true;
                 }
                 else if (id == R.id.navigation_schedule) {
@@ -79,8 +62,5 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
-
-
 }

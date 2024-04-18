@@ -14,7 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyVoenmeh"
         tools:targetApi="31">
-
+        <activity
+            android:name=".Activities.NewsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ServicesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.TrackerActivity"
+            android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
             android:exported="false" />
