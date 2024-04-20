@@ -17,14 +17,15 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="186dp"
-            android:translationY="58dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="58dp"
             app:srcCompat="@drawable/voenmeh_logo" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:translationY="287dp">
+            android:translationY="249dp">
 
             <TextView
                 android:id="@+id/textView2"
@@ -46,15 +47,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:translationY="335dp">
+            android:translationY="268dp">
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="330dp"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/corner_login"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/montserrat_m"
@@ -66,10 +69,11 @@
 
             <EditText
                 android:id="@+id/password"
-                android:layout_width="330dp"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/corner_login"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/montserrat_m"
@@ -79,47 +83,49 @@
                 android:textColor="#9A9A9A"
                 android:textColorHighlight="@color/cardview_dark_background" />
 
-            <TableRow
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="61dp"
-                android:gravity="center"
-                android:translationY="3dp">
+                android:layout_height="wrap_content"
+                android:translationY="8dp"
+                android:gravity="center">
 
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:checked="false"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:button="@drawable/image_checkbox"
-                    android:focusable="false"
                     android:theme="@style/colored_checkBox"
-                    android:translationX="15dp" />
+                    android:checked="false"
+                    android:focusable="false"
+                    android:background="@null"
+                    android:layout_alignParentStart="true" />
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="331dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:translationY="2dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/montserrat_r"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:text="Даю согласие на обработку персональных данных"
                     android:textSize="13sp"
-                    android:translationX="3dp"
-                    android:translationY="8dp" />
+                    android:layout_toEndOf="@id/checkBox" />
 
-            </TableRow>
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/loginButton"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/blue_main"
                 android:fontFamily="@font/montserrat_sb"
                 android:text="Войти"
                 android:textSize="20sp"
-                android:translationY="-15dp"
                 app:cornerRadius="15dp" />
         </LinearLayout>
 
