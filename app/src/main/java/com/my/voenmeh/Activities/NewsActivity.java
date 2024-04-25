@@ -3,6 +3,7 @@ package com.my.voenmeh.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.my.voenmeh.R;
+import com.my.voenmeh.ui.news.NewsPost;
 
 public class NewsActivity extends AppCompatActivity {
 
@@ -63,5 +65,17 @@ public class NewsActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // generatePosts();
+        LinearLayout ll = findViewById(R.id.news_posts);
+        for (int i = 0; i < 5; i++) {
+
+            NewsPost np = new NewsPost(i);
+/*
+            ll.addView(np.getTextView());
+            ll.addView(np.getImageView());
+            */
+
+        }
     }
 }
