@@ -94,11 +94,11 @@
                     android:button="@drawable/image_checkbox"
                     android:focusable="false"
                     android:theme="@style/colored_checkBox"
-                    android:translationX="15dp" />
+                    android:translationX="-8dp" />
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="331dp"
+                    android:layout_width="294dp"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/montserrat_r"
                     android:gravity="center"
