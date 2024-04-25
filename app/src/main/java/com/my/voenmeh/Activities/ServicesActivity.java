@@ -3,6 +3,8 @@ package com.my.voenmeh.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,6 +18,10 @@ import com.my.voenmeh.R;
 
 public class ServicesActivity extends AppCompatActivity {
 
+    private void openMapActivity() {
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,13 @@ public class ServicesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             v.setPadding(0, systemBars.top, 0, 0);
             return insets;
+        });
+        ImageView imageView = findViewById(R.id.service_map);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMapActivity();
+            }
         });
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
