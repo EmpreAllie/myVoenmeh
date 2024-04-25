@@ -7,14 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".Activities.NewsActivity">
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/News"
-        android:textSize="40sp"
-        android:textColor="@color/blue_main"
-        android:layout_centerInParent="true"
-        />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/news_posts"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
