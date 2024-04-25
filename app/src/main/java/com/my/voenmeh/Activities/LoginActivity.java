@@ -19,10 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.my.voenmeh.R;
 
+import com.my.voenmeh.Authentication.UserRepository;
 public class LoginActivity extends AppCompatActivity {
     // Основной метод, вызываемый при создании активности
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        UserRepository UserData = new UserRepository();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         // Находим элемент TextView по его ID
@@ -74,8 +77,10 @@ public class LoginActivity extends AppCompatActivity {
         // Обработчик нажатия на кнопку
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                UserData.SetLogin(username.getText().toString());
+                UserData.SetPassword(password.getText().toString());
                 // Проверяем правильность введенных данных
-                if (true) {
+                if (UserData.CorrectLogin() && UserData.CorrectPassword()) {
                     // Если данные верны, переходим на основную страницу
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
