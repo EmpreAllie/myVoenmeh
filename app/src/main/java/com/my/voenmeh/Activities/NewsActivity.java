@@ -67,14 +67,10 @@ public class NewsActivity extends AppCompatActivity {
         });
 
         // generatePosts();
-        LinearLayout ll = findViewById(R.id.news_posts);
+
         for (int i = 0; i < 5; i++) {
 
-            NewsPost np = new NewsPost(i);
-/*
-            ll.addView(np.getTextView());
-            ll.addView(np.getImageView());
-            */
+            NewsPost np = new NewsPost(i, NewsActivity.this);
 
         }
     }
