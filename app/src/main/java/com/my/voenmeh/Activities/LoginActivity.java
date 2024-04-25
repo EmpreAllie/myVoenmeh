@@ -24,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     // Основной метод, вызываемый при создании активности
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        UserRepository UserData = new UserRepository();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
@@ -77,10 +76,10 @@ public class LoginActivity extends AppCompatActivity {
         // Обработчик нажатия на кнопку
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                UserData.SetLogin(username.getText().toString());
-                UserData.SetPassword(password.getText().toString());
+                UserRepository.SetLogin(username.getText().toString());
+                UserRepository.SetPassword(password.getText().toString());
                 // Проверяем правильность введенных данных
-                if (UserData.CorrectLogin() && UserData.CorrectPassword()) {
+                if (UserRepository.CorrectLogin() && UserRepository.CorrectPassword()) {
                     // Если данные верны, переходим на основную страницу
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
