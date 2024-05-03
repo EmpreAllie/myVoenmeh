@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         // Находим элемент TextView по его ID
-        TextView textView = findViewById(R.id.textView3);
+        TextView textView = findViewById(R.id.textView4);
         // Получаем текст из TextView
         String fullText = textView.getText().toString();
         String subString = "согласие на обработку персональных данных";
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Проверяем правильность введенных данных
-                if (true) {
+                if (username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
                     // Если данные верны, переходим на основную страницу
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
