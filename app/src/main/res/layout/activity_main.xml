@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
             app:itemBackground="@android:color/transparent"
-            app:itemIconTint="@drawable/v_bottomnavigation"
+            app:itemIconTint="@drawable/bn_main"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_nav_menu"
             android:layout_alignParentBottom="true"
