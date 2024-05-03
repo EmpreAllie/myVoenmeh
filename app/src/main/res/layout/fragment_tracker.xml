@@ -29,6 +29,16 @@
             android:layout_marginLeft="11.943dp">
 
             <RadioButton
+                android:id="@+id/rad_btn5"
+                android:layout_width="40.983dp"
+                android:layout_height="42.667dp"
+                android:background="@null"
+                android:backgroundTintMode="add"
+                android:button="@null"
+                android:text="5"
+                android:textSize="0sp" />
+
+            <RadioButton
                 android:id="@+id/rad_btn4"
                 android:layout_width="40.983dp"
                 android:layout_height="42.667dp"

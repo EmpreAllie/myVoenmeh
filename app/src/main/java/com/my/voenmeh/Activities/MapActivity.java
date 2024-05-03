@@ -2,87 +2,95 @@ package com.my.voenmeh.Activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import android.view.View;
-import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Switch;
-import android.widget.ToggleButton;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.my.voenmeh.R;
 
-public class MapActivity extends AppCompatActivity
-{
-
+public class MapActivity extends AppCompatActivity {
+    private boolean isULK = false;
+    private int selectedFloor = 1;
+    private RadioButton button_rg4;
+    private RadioButton button_rg5;
     private SubsamplingScaleImageView map;
 
     @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_tracker);
-
-
-        map = (SubsamplingScaleImageView)findViewById(R.id.map);
+        map = (SubsamplingScaleImageView) findViewById(R.id.map);
+        button_rg4 = findViewById(R.id.rad_btn4);
+        button_rg5 = findViewById(R.id.rad_btn5);
         map.setImage(ImageSource.resource(R.drawable.map11));
-        findViewById(R.id.rad_btn1).setOnClickListener((view)->onRadioButtonClicked(view));
-        findViewById(R.id.rad_btn2).setOnClickListener((view)->onRadioButtonClicked(view));
-        findViewById(R.id.rad_btn3).setOnClickListener((view)->onRadioButtonClicked(view));
-        findViewById(R.id.rad_btn4).setOnClickListener((view)->onRadioButtonClicked(view));
-        findViewById(R.id.switch1).setOnClickListener((view)->onRadioButtonClicked(view));
+        findViewById(R.id.rad_btn1).setOnClickListener(this::onRadioButtonClicked);
+        findViewById(R.id.rad_btn2).setOnClickListener(this::onRadioButtonClicked);
+        findViewById(R.id.rad_btn3).setOnClickListener(this::onRadioButtonClicked);
+        findViewById(R.id.rad_btn4).setOnClickListener(this::onRadioButtonClicked);
+        findViewById(R.id.rad_btn5).setOnClickListener(this::onRadioButtonClicked);
+        findViewById(R.id.switch1).setOnClickListener(this::onRadioButtonClicked);
+    }
 
-    };
-
-    public void onRadioButtonClicked(View view)
-    {
-        // Получаем выбранный этаж и корпус
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void onRadioButtonClicked(View view) {
         RadioGroup floorGroup = findViewById(R.id.group1);
         int floorId = floorGroup.getCheckedRadioButtonId();
         RadioButton floorButton = findViewById(floorId);
-        String selectedFloor = floorButton.getText().toString();
-
+        selectedFloor = Integer.parseInt(floorButton.getText().toString());
         SwitchCompat buildingSwitch = findViewById(R.id.switch1);
-        boolean isULK = buildingSwitch.isChecked();
-        if ("1".equals(selectedFloor)) {
-            if (isULK) {
-                map.setImage(ImageSource.resource(R.drawable.map21));
-            } else {
-                map.setImage(ImageSource.resource(R.drawable.map11));
-            }
-        } else if ("2".equals(selectedFloor)) {
-            if (isULK) {
-                map.setImage(ImageSource.resource(R.drawable.map22));
-            } else {
-                map.setImage(ImageSource.resource(R.drawable.map12));
-            }
-        } else if ("3".equals(selectedFloor)) {
-            if (isULK) {
-                map.setImage(ImageSource.resource(R.drawable.map23));
-            } else {
-                map.setImage(ImageSource.resource(R.drawable.map13));
-            }
-        } else if ("4".equals(selectedFloor)) {
-            if (isULK) {
-                map.setImage(ImageSource.resource(R.drawable.map24));
-            } else {
-                map.setImage(ImageSource.resource(R.drawable.map14));
-            }
-        }
+        isULK = buildingSwitch.isChecked();
+        updateMapImage();
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void updateMapImage() {
+        if (isULK) {
+            switch (selectedFloor) {
+                case 1:
+                    map.setImage(ImageSource.resource(R.drawable.map21));
+                    break;
+                case 2:
+                    map.setImage(ImageSource.resource(R.drawable.map22));
+                    break;
+                case 3:
+                    map.setImage(ImageSource.resource(R.drawable.map23));
+                    break;
+                case 4:
+                    map.setImage(ImageSource.resource(R.drawable.map24));
+                    break;
+                case 5:
+                    map.setImage(ImageSource.resource(R.drawable.map25));
+                    break;
+            }
+            button_rg4.setBackground(getResources().getDrawable(R.drawable.button_rg4_1));
+            button_rg5.setClickable(true);
+            button_rg5.setBackground(getResources().getDrawable(R.drawable.button_rg5));
+        } else {
+            switch (selectedFloor) {
+                case 1:
+                    map.setImage(ImageSource.resource(R.drawable.map11));
+                    break;
+                case 2:
+                    map.setImage(ImageSource.resource(R.drawable.map12));
+                    break;
+                case 3:
+                    map.setImage(ImageSource.resource(R.drawable.map13));
+                    break;
+                case 4:
+                    map.setImage(ImageSource.resource(R.drawable.map14));
+                    break;
+                case 5:
+                    map.setImage(ImageSource.resource(R.drawable.map14));
+                    button_rg4.setChecked(true);
+                    break;
+            }
+            button_rg4.setBackground(getResources().getDrawable(R.drawable.button_rg4));
+            button_rg5.setClickable(false);
+            button_rg5.setBackground(null);
+        }
+    }
 }
