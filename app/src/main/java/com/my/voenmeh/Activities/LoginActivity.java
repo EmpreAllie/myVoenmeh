@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -68,6 +70,24 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue_main)));
             }
         });
+
+        ImageButton button = findViewById(R.id.imageButton2); // замените imageButton2 на реальный id вашей кнопки
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+                // Проверка, поддерживает ли устройство вибрацию
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(100); // указываем длительность в миллисекундах
+                }
+
+                Intent intent = new Intent(LoginActivity.this, StartUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         // Находим элементы EditText по их ID
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);

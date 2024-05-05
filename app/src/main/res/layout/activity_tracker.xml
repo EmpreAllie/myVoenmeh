@@ -10,23 +10,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Attendance"
-        android:textSize="40sp"
-        android:textColor="@color/blue_main"
-        android:layout_centerInParent="true"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="18.583dp"
+        android:layout_marginTop="17.120dp"
+        android:fontFamily="@font/montserrat_b"
+        android:text="Трекер"
+        android:textColor="@color/black"
+        android:textSize="27sp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@android:color/transparent"
         app:itemIconTint="@drawable/bn_main"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        app:menu="@menu/bottom_nav_menu" />
 
 
 </RelativeLayout>

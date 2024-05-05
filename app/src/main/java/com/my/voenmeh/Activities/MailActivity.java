@@ -29,7 +29,7 @@ public class MailActivity extends AppCompatActivity {
         // Находим WebView по id
         webView = findViewById(R.id.mailView);
         webView.getSettings().setJavaScriptEnabled(true); // Включаем поддержку JavaScript
-        webView.loadUrl("https://mail.voenmeh.ru/mail"); // Загружаем страницу почты
+        webView.loadUrl("https://mail.voenmeh.ru/mail/"); // Загружаем страницу почты
 
         // Настройки WebView для открытия ссылок внутри приложения, а не в браузере
         webView.setWebViewClient(new WebViewClient() {

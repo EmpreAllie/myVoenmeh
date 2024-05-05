@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -22,6 +23,7 @@ public class ServicesActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,8 @@ public class ServicesActivity extends AppCompatActivity {
             v.setPadding(0, systemBars.top, 0, 0);
             return insets;
         });
-        ImageView imageView = findViewById(R.id.service_map);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        ImageButton imageButton = findViewById(R.id.imageButton3);
+        imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMapActivity();
@@ -52,23 +54,19 @@ public class ServicesActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_tracker) {
+                } else if (id == R.id.navigation_tracker) {
                     startActivity(new Intent(getApplicationContext(), TrackerActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_schedule) {
+                } else if (id == R.id.navigation_schedule) {
                     startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_mail) {
+                } else if (id == R.id.navigation_mail) {
                     startActivity(new Intent(getApplicationContext(), MailActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_service) {
+                } else if (id == R.id.navigation_service) {
 
                     return true;
                 }
