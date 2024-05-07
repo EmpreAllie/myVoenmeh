@@ -9,6 +9,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,11 +21,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.my.voenmeh.R;
 
 import com.my.voenmeh.Authentication.UserRepository;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 public class LoginActivity extends AppCompatActivity {
+
+    /**пуллим_группы_начало**/
+    private void pullGroups(){
+        Thread GettingGroups; //второй поток во избежание перегрузки мэйна
+        Runnable runnable;
+        runnable = new Runnable(){
+            @Override
+            public void run(){
+                getWeb();
+            }
+        };
+        GettingGroups = new Thread(runnable); //запускаем поток
+        GettingGroups.start();
+    }
+
+    private void getWeb(){
+        try {
+            Document WebSchedule = Jsoup.connect("http://www.voenmeh.com/schedule_green.php").get();
+            Elements semesters = WebSchedule.getElementsByTag("option");
+            String semester_id = semesters.get(0).val();
+            String url = "http://www.voenmeh.com/schedule_green.php?semestr_id=" + semester_id + "&page_mode=group";
+            WebSchedule = Jsoup.connect(url).get();
+            Elements groups =  WebSchedule.getElementsByTag("option"); //берем группы
+            UserRepository.PullGroups(groups); //заполняем в user repositoriy хешсет с группами
+        }
+        catch(Exception e){
+            Log.d("Exceptions", e.toString());
+        }
+    }
+    /**пуллим_группы_конец**/
+
     // Основной метод, вызываемый при создании активности
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        pullGroups();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         // Находим элемент TextView по его ID
