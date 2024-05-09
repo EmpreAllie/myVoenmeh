@@ -16,9 +16,9 @@ public class NewsPost {
     TextView postText = null;
     ImageView postImage = null;
     public NewsPost(int index, Context mContext) {
-        NewsRepository nr = new NewsRepository();
+        NewsRepository nr = new NewsRepository(); // здесь заполняется список из медиа для постов
 
-        // хуйня для доступа к вьюшкам в активити
+        // фигня для доступа к вьюшкам в активити
         Activity a = (Activity) mContext;
         LinearLayout ll = (LinearLayout) a.findViewById(R.id.news_posts);
 
