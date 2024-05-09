@@ -60,4 +60,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.davemorrissey.labs:subsampling-scale-image-view:3.10.0")
     implementation("com.ibm.icu:icu4j:72.1")
+    implementation("com.android.volley:volley:1.2.1")
 }
