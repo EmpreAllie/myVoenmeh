@@ -12,6 +12,8 @@ import com.my.voenmeh.Utils.Constants;
 import com.my.voenmeh.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.ls.LSOutput;
+
 public class NewsPost {
     TextView postText = null;
     ImageView postImage = null;
@@ -35,7 +37,14 @@ public class NewsPost {
             // создание одной картинки
             postImage = new ImageView(mContext);
             String url = nr.listOfPosts.get(index).getImageUrl();
-            Picasso.get().load(url).into(postImage);
+            System.out.println("url: " + url);
+            if (url != "") {
+                Picasso.get().load(url).into(postImage);
+            }
+            else {
+                String unavailablePath = "https://eagle-sensors.com/wp-content/uploads/unavailable-image.jpg";
+                Picasso.get().load(unavailablePath).into(postImage);
+            }
             ll.addView(postImage);
         }
     }

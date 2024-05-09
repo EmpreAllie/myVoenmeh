@@ -21,8 +21,8 @@ import javax.net.ssl.HttpsURLConnection;
 public class NewsRepository {
     List<PostRepository> listOfPosts = null;
     final String accessToken = "e9c2c921e9c2c921e9c2c921e1ead507a6ee9c2e9c2c9218ff45770cd19be73beb73d56";
-    final String ownerId = "-173357713";
-    final String domain = "petrovichmihalych";
+    final String ownerId = "-457254637";
+    final String domain = "bstu_voenmeh";
     final String offset = "0";
     final Integer count = Constants.NUMBER_OF_POSTS;
     final String filter = "owner";
