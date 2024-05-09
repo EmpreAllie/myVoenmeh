@@ -2,7 +2,7 @@ package com.my.voenmeh.ui.news;
 
 import android.util.Log;
 
-import com.my.voenmeh.Constants;
+import com.my.voenmeh.Utils.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +24,7 @@ public class NewsRepository {
     final String ownerId = "-173357713";
     final String domain = "petrovichmihalych";
     final String offset = "0";
-    final Integer count = Constants.NUMBER_OF_POSTS; //"5"; // TODO someConstant.ToString();
+    final Integer count = Constants.NUMBER_OF_POSTS;
     final String filter = "owner";
     final String v = "5.199"; // TODO getLatest();
 

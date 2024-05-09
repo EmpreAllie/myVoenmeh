@@ -69,9 +69,7 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-        // TODO создать функцию generatePosts();
-        // TODO разобраться нахуй с этими циклами
-
+        // вся хуйня для загрузки и отображения новостей
         NewsPost np = new NewsPost(NewsActivity.this);
     }
 }

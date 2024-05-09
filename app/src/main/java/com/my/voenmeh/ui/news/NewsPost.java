@@ -2,14 +2,13 @@ package com.my.voenmeh.ui.news;
 
 import static android.view.ViewGroup.LayoutParams;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.my.voenmeh.Constants;
+import com.my.voenmeh.Utils.Constants;
 import com.my.voenmeh.R;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +39,4 @@ public class NewsPost {
             ll.addView(postImage);
         }
     }
-    public TextView getTextView() { return postText; }
-    public ImageView getImageView() { return postImage; }
 }
