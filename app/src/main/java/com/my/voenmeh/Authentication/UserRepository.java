@@ -1,15 +1,20 @@
 package com.my.voenmeh.Authentication;
 
 import android.util.Log;
+import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ibm.icu.text.Transliterator;
+import com.my.voenmeh.Activities.ScheduleActivity;
+import com.my.voenmeh.Schedule.Schedule;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class UserRepository { //статический класс, в течение работы проги хранит персональные данные
@@ -17,6 +22,9 @@ public class UserRepository { //статический класс, в течен
     static String password = "";
     static String group = "";
     static HashSet<String> Groups = new HashSet<String>();
+    static HashMap<String, Integer> Subjects = new HashMap<String, Integer>();
+    static int EvenWeeksInSem = 8, OddWeeksInSem = 8;
+    static Schedule StudentSchedule = new Schedule();
 
     public static void SetLogin(String log){ //сеттер
         login = log;
@@ -25,6 +33,11 @@ public class UserRepository { //статический класс, в течен
     public static void SetPassword(String pass){ //сеттер
         password = pass;
     }
+
+    public static String GetGroup(){
+        return group;
+    }
+
     private static String Convert(String value, String type){ //преобразование группы в логин и логина в группу
         Transliterator tr;         //в type передаем group(логин -> группа) или loginXX(группа -> логин), где XX - номер студента в группе
         String result = "";
@@ -60,6 +73,37 @@ public class UserRepository { //статический класс, в течен
         }
     }
 
+    public static void GetSchedule(){
+        if(!Subjects.isEmpty()){ //класс статический, достаточно заполнитить один раз
+            return;
+        }
+        StudentSchedule.PullSchedule("О721Б"); //заменить на group
+
+        //циклы считают, сколько раз встречается каждый предмет на четной неделе
+        for(Schedule.Day day : StudentSchedule.GetWeek(true)){
+            for(String CurrentSubject : day.Get("subject")){
+                if(!Subjects.containsKey(CurrentSubject)){
+                    Subjects.put(CurrentSubject, EvenWeeksInSem);
+                }
+                else{
+                    Subjects.replace(CurrentSubject, Subjects.get(CurrentSubject) + EvenWeeksInSem);
+                }
+            }//по ключy CurrentSubject получаем инт,
+        }//где значение - кол-во занятий по предмету в семе
+
+        //циклы считают, сколько раз встречается каждый предмет на нечетной неделе
+        for(Schedule.Day day : StudentSchedule.GetWeek(false)){
+            for(String CurrentSubject : day.Get("subject")){
+                if(!Subjects.containsKey(CurrentSubject)){
+                    Subjects.put(CurrentSubject, OddWeeksInSem);
+                }
+                else{
+                    Subjects.replace(CurrentSubject, Subjects.get(CurrentSubject) + OddWeeksInSem);
+                }
+            }
+        }
+    }
+
     public static boolean CorrectLogin(){ //допилить проверку корректности логина в зависимости от
         if(login.length() == 1){ //имеющихся групп (мудл апи или че там ебать)
             return true;
@@ -77,3 +121,4 @@ public class UserRepository { //статический класс, в течен
         return true;
     }
 }
+
