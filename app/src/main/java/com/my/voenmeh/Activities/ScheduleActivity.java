@@ -120,7 +120,6 @@ public class ScheduleActivity extends AppCompatActivity {
                 }
 
                 return false;
-            }
-        });
+            }});//////////////-0//
     }
 }

@@ -22,7 +22,8 @@ public class TrackerActivity extends AppCompatActivity {
      * в ХешМапе Subjects в классе userReposiory, она заполняется
      * при первом открытии этого активити
      *
-     *
+     * Ахуеть нахуй
+     * фронтендеры не ЛОХИ
      */
 
 
