@@ -17,6 +17,9 @@ import com.my.voenmeh.R;
 import com.my.voenmeh.ui.news.NewsPost;
 
 public class NewsActivity extends AppCompatActivity {
+    //public static final int COUNT = 5;
+    // todo обеспечить сохранение в памяти контента, чтобы активити не загружались каждый раз заново
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +69,7 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-        // generatePosts();
-
-        for (int i = 0; i < 5; i++) {
-
-            NewsPost np = new NewsPost(i, NewsActivity.this);
-
-        }
+        // вся хуйня для загрузки и отображения новостей
+        NewsPost np = new NewsPost(NewsActivity.this);
     }
 }

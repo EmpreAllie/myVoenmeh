@@ -2,6 +2,8 @@ package com.my.voenmeh.ui.news;
 
 import android.util.Log;
 
+import com.my.voenmeh.Utils.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,10 +21,10 @@ import javax.net.ssl.HttpsURLConnection;
 public class NewsRepository {
     List<PostRepository> listOfPosts = null;
     final String accessToken = "e9c2c921e9c2c921e9c2c921e1ead507a6ee9c2e9c2c9218ff45770cd19be73beb73d56";
-    final String ownerId = "-173357713";
-    final String domain = "petrovichmihalych";
+    final String ownerId = "-457254637";
+    final String domain = "bstu_voenmeh";
     final String offset = "0";
-    final String count = "5"; // TODO someConstant.ToString();
+    final Integer count = Constants.NUMBER_OF_POSTS;
     final String filter = "owner";
     final String v = "5.199"; // TODO getLatest();
 
@@ -35,18 +37,17 @@ public class NewsRepository {
     private void fetchLatestNews() {
         listOfPosts = new ArrayList<PostRepository>();
 
-        int number_of_posts = 5; // TODO getFromConstantValue();
-
         makeNetworkRequest();
         while(jsonString == null) {
             ;
         } // ожидание ответа...
 
         // на этом моменте в jsonString хранится ответ с сервера ВК в виде json-строки
-        String text = ""; // текст записи под номером 1, 2, 3...
-        String imageUrl = ""; // getImageFromVk();
 
-        for (int i = 0; i < number_of_posts; i++) {
+        String text = ""; // текст записи под номером 1, 2, 3...
+        String imageUrl = "";
+
+        for (int i = 0; i < Constants.NUMBER_OF_POSTS; i++) {
             text = getTextFromJson(i);
             imageUrl = getImageFromJson(i);
             listOfPosts.add(new PostRepository(text, imageUrl));
@@ -55,7 +56,7 @@ public class NewsRepository {
 
     private void makeNetworkRequest() {
         String requestString = "https://api.vk.com/method/wall.get?access_token=" + accessToken + "&owner_id=" + ownerId +
-                "&domain=" + domain + "&offset=" + offset + "&count=" + count + "&filter=" + filter +
+                "&domain=" + domain + "&offset=" + offset + "&count=" + count.toString() + "&filter=" + filter +
                 "&v=" + v;
 
         Thread NetworkRequest;
