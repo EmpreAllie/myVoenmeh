@@ -12,12 +12,36 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.my.voenmeh.Authentication.UserRepository;
 import com.my.voenmeh.R;
 
 public class TrackerActivity extends AppCompatActivity {
 
+    /**
+     * Сколько конкретного предмета в семе - можно посмотреть
+     * в ХешМапе Subjects в классе userReposiory, она заполняется
+     * при первом открытии этого активити
+     *
+     *
+     */
+
+
+    private void getSubjects() {
+        Thread GettingSubjects; //второй поток во избежание перегрузки мэйна
+        Runnable runnable;
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                UserRepository.GetSchedule();
+            }
+        };
+        GettingSubjects = new Thread(runnable); //запускаем поток
+        GettingSubjects.start();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSubjects();
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_tracker);
