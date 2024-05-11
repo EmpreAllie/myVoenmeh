@@ -21,8 +21,6 @@ public class TrackerActivity extends AppCompatActivity {
      * Сколько конкретного предмета в семе - можно посмотреть
      * в ХешМапе Subjects в классе userReposiory, она заполняется
      * при первом открытии этого активити
-     *
-     *
      */
 
 
@@ -38,6 +36,7 @@ public class TrackerActivity extends AppCompatActivity {
         GettingSubjects = new Thread(runnable); //запускаем поток
         GettingSubjects.start();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSubjects();
@@ -63,22 +62,18 @@ public class TrackerActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_tracker) {
+                } else if (id == R.id.navigation_tracker) {
 
                     return true;
-                }
-                else if (id == R.id.navigation_schedule) {
+                } else if (id == R.id.navigation_schedule) {
                     startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_mail) {
+                } else if (id == R.id.navigation_mail) {
                     startActivity(new Intent(getApplicationContext(), MailActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_service) {
+                } else if (id == R.id.navigation_service) {
                     startActivity(new Intent(getApplicationContext(), ServicesActivity.class));
                     overridePendingTransition(0, 0);
                     return true;

@@ -7,26 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MailActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Mail"
-        android:textSize="40sp"
-        android:textColor="@color/blue_main"
-        android:layout_centerInParent="true"
-        />
+    <WebView
+        android:id="@+id/mailView"
+        android:layout_width="match_parent"
+        android:layout_height="664dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@drawable/v_bottomnavigation"
+        app:itemIconTint="@drawable/bn_main"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        app:menu="@menu/bottom_nav_menu" />
 
 
 </RelativeLayout>

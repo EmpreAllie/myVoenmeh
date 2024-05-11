@@ -20,7 +20,6 @@ import com.my.voenmeh.R;
 import com.my.voenmeh.databinding.ActivityMainBinding;
 
 
-
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -48,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_news, R.id.navigation_tracker, R.id.navigation_schedule, R.id.navigation_mail, R.id.navigation_service)
-                .build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.navigation_news, R.id.navigation_tracker, R.id.navigation_schedule, R.id.navigation_mail, R.id.navigation_service).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
@@ -65,23 +62,19 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), NewsActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_tracker) {
+                } else if (id == R.id.navigation_tracker) {
                     startActivity(new Intent(getApplicationContext(), TrackerActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_schedule) {
+                } else if (id == R.id.navigation_schedule) {
                     startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_mail) {
+                } else if (id == R.id.navigation_mail) {
                     startActivity(new Intent(getApplicationContext(), MailActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_service) {
+                } else if (id == R.id.navigation_service) {
                     startActivity(new Intent(getApplicationContext(), ServicesActivity.class));
                     overridePendingTransition(0, 0);
                     return true;

@@ -43,23 +43,19 @@ public class NewsActivity extends AppCompatActivity {
                 if (id == R.id.navigation_news) {
 
                     return true;
-                }
-                else if (id == R.id.navigation_tracker) {
+                } else if (id == R.id.navigation_tracker) {
                     startActivity(new Intent(getApplicationContext(), TrackerActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_schedule) {
+                } else if (id == R.id.navigation_schedule) {
                     startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_mail) {
+                } else if (id == R.id.navigation_mail) {
                     startActivity(new Intent(getApplicationContext(), MailActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                }
-                else if (id == R.id.navigation_service) {
+                } else if (id == R.id.navigation_service) {
                     startActivity(new Intent(getApplicationContext(), ServicesActivity.class));
                     overridePendingTransition(0, 0);
                     return true;

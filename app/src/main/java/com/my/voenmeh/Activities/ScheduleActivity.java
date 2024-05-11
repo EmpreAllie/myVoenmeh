@@ -88,7 +88,7 @@ public class ScheduleActivity extends AppCompatActivity {
             public void run() {
                 displaySchedule();
             }
-        }, 5000); // Задержка в 5 секунд, предполагается, что за это время
+        }, 1000); // Задержка в 5 секунд, предполагается, что за это время
         // расписание будет загружено
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -120,6 +120,7 @@ public class ScheduleActivity extends AppCompatActivity {
                 }
 
                 return false;
-            }});//////////////-0//
+            }
+        });//////////////-0//
     }
 }

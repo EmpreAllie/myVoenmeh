@@ -17,25 +17,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
         <RadioGroup
             android:id="@+id/group1"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:translationX="-20dp"
-            android:translationY="-132dp">
+            android:layout_marginLeft="11.943dp"
+            android:layout_marginTop="102.370dp">
+
+            <RadioButton
+                android:id="@+id/rad_btn5"
+                android:layout_width="40.983dp"
+                android:layout_height="42.667dp"
+                android:background="@null"
+                android:backgroundTintMode="add"
+                android:button="@null"
+                android:text="5"
+                android:textSize="0sp" />
 
             <RadioButton
                 android:id="@+id/rad_btn4"
-                android:layout_width="51dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/v_button4"
+                android:layout_width="40.983dp"
+                android:layout_height="42.667dp"
+                android:background="@drawable/button_rg4"
                 android:backgroundTintMode="add"
                 android:button="@null"
                 android:text="4"
@@ -43,9 +50,9 @@
 
             <RadioButton
                 android:id="@+id/rad_btn3"
-                android:layout_width="51dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/v_button3"
+                android:layout_width="40.983dp"
+                android:layout_height="44.473dp"
+                android:background="@drawable/button_rg3"
                 android:backgroundTintMode="add"
                 android:button="@null"
                 android:text="3"
@@ -53,9 +60,9 @@
 
             <RadioButton
                 android:id="@+id/rad_btn2"
-                android:layout_width="51dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/v_button2"
+                android:layout_width="40.983dp"
+                android:layout_height="44.473dp"
+                android:background="@drawable/button_rg2"
                 android:backgroundTintMode="add"
                 android:button="@null"
                 android:text="2"
@@ -63,9 +70,9 @@
 
             <RadioButton
                 android:id="@+id/rad_btn1"
-                android:layout_width="51dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/v_button"
+                android:layout_width="40.983dp"
+                android:layout_height="42.667dp"
+                android:background="@drawable/button_rg1"
                 android:backgroundTintMode="add"
                 android:button="@null"
                 android:checked="true"
@@ -75,18 +82,17 @@
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/v_switch"
-            android:gravity="end|bottom"
-            android:textOff="улк"
-            android:textOn="гк"
+            android:layout_marginLeft="303.080dp"
+            android:layout_marginTop="102.333dp"
+            android:background="@null"
+            android:button="@drawable/switch_map"
             android:thumb="@null"
             android:track="@null"
-            android:translationX="300dp"
-            android:translationY="-325dp"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

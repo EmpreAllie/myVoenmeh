@@ -14,13 +14,13 @@
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:background="?android:attr/windowBackground"
             app:itemBackground="@android:color/transparent"
-            app:itemIconTint="@drawable/v_bottomnavigation"
+            app:itemIconTint="@drawable/bn_main"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            app:menu="@menu/bottom_nav_menu" />
 
         <fragment
             android:id="@+id/nav_host_fragment_activity_main"

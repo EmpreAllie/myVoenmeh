@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.my.voenmeh.R;
@@ -28,13 +31,12 @@ import org.jsoup.select.Elements;
 
 public class LoginActivity extends AppCompatActivity {
 
-    /**пуллим_группы_начало**/
-    private void pullGroups(){
+    private void pullGroups() {
         Thread GettingGroups; //второй поток во избежание перегрузки мэйна
         Runnable runnable;
-        runnable = new Runnable(){
+        runnable = new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 getWeb();
             }
         };
@@ -42,30 +44,27 @@ public class LoginActivity extends AppCompatActivity {
         GettingGroups.start();
     }
 
-    private void getWeb(){
+    private void getWeb() {
         try {
             Document WebSchedule = Jsoup.connect("http://www.voenmeh.com/schedule_green.php").get();
             Elements semesters = WebSchedule.getElementsByTag("option");
             String semester_id = semesters.get(0).val();
             String url = "http://www.voenmeh.com/schedule_green.php?semestr_id=" + semester_id + "&page_mode=group";
             WebSchedule = Jsoup.connect(url).get();
-            Elements groups =  WebSchedule.getElementsByTag("option"); //берем группы
+            Elements groups = WebSchedule.getElementsByTag("option"); //берем группы
             UserRepository.PullGroups(groups); //заполняем в user repositoriy хешсет с группами
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d("Exceptions", e.toString());
         }
     }
-    /**пуллим_группы_конец**/
 
     // Основной метод, вызываемый при создании активности
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        pullGroups();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         // Находим элемент TextView по его ID
-        TextView textView = findViewById(R.id.textView3);
+        TextView textView = findViewById(R.id.textView4);
         // Получаем текст из TextView
         String fullText = textView.getText().toString();
         String subString = "согласие на обработку персональных данных";
@@ -107,6 +106,24 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.blue_main)));
             }
         });
+
+        ImageButton button = findViewById(R.id.imageButton2); // замените imageButton2 на реальный id вашей кнопки
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+
+                // Проверка, поддерживает ли устройство вибрацию
+                if (vibrator.hasVibrator()) {
+                    vibrator.vibrate(100); // указываем длительность в миллисекундах
+                }
+
+                Intent intent = new Intent(LoginActivity.this, StartUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         // Находим элементы EditText по их ID
         EditText username = findViewById(R.id.username);
         EditText password = findViewById(R.id.password);
