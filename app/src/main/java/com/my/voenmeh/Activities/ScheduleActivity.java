@@ -2,12 +2,17 @@ package com.my.voenmeh.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -16,6 +21,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -55,20 +61,29 @@ public class ScheduleActivity extends AppCompatActivity {
         }
     }
 
-    // Метод для отображения расписания в зависимости от типа недели
     private void displaySchedule(boolean isOddWeek) {
         // Получение TableLayout
         TableLayout tableLayout = findViewById(R.id.tableLayoutSchedule);
         tableLayout.removeAllViews(); // Очистка предыдущих строк
 
-        // Определение типа недели и добавление заголовка недели
-        String weekType = isOddWeek ? "Нечетная неделя" : "Четная неделя";
-        addScheduleRow(tableLayout, weekType, "", "", "");
+        // Флаг для определения, добавлен ли уже первый день
+        boolean isFirstDayAdded = false;
 
         // Проход по каждому дню в выбранной неделе
         for (Schedule.Day day : schedule.GetWeek(isOddWeek)) {
-            // Добавление заголовка дня
-            addScheduleRow(tableLayout, day.dayName, "", "", "");
+            // Если первый день еще не добавлен, добавляем заголовок дня без разделителя
+            if (!isFirstDayAdded) {
+                addDayTitleRow(tableLayout, day.dayName);
+                createSpace(tableLayout, 7);
+                isFirstDayAdded = true;
+            } else {
+                // Добавление разделителя перед остальными днями
+                createSpace(tableLayout, 20);
+                addSeparator(tableLayout);
+                createSpace(tableLayout, 20);
+                addDayTitleRow(tableLayout, day.dayName);
+                createSpace(tableLayout, 7);
+            }
 
             // Добавление информации о времени, предмете, преподавателе и месте
             for (int i = 0; i < day.time.size(); i++) {
@@ -77,12 +92,61 @@ public class ScheduleActivity extends AppCompatActivity {
         }
     }
 
-    // Метод для добавления строки в TableLayout
+    // Метод для добавления строки с заголовком дня в TableLayout
+    private void addDayTitleRow(TableLayout tableLayout, String dayName) {
+        TableRow tableRowDay = new TableRow(this);
+        TextView textViewDay = new TextView(this);
+        textViewDay.setText(dayName);
+        textViewDay.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.montserrat_m);
+        textViewDay.setTypeface(typeface);
+        textViewDay.setTextColor(Color.parseColor("#000000"));
+
+        tableRowDay.addView(textViewDay);
+        tableLayout.addView(tableRowDay, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void addSeparator(TableLayout tableLayout) {
+        // Добавление TextView для места
+        TableRow tableRowDivider = new TableRow(this);
+        TextView textViewDivider = new TextView(this);
+        textViewDivider.setText("—————————");
+        textViewDivider.setTextColor(Color.parseColor("#000000"));
+        textViewDivider.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        Typeface typeface5 = ResourcesCompat.getFont(this, R.font.montserrat_m);
+        textViewDivider.setTypeface(typeface5);
+        tableRowDivider.addView(textViewDivider);
+        tableLayout.addView(tableRowDivider, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    private void createSpace(ViewGroup parentLayout, int dp) {
+        // Создание белого прямоугольника
+        View whiteRectangle = new View(this);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(dpToPx(dp), dpToPx(dp));
+        whiteRectangle.setLayoutParams(layoutParams);
+        whiteRectangle.setBackgroundColor(Color.TRANSPARENT);
+
+        // Добавление белого прямоугольника на родительский layout
+        parentLayout.addView(whiteRectangle);
+    }
+
+    // Метод для конвертации dp в px
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
+    }
+
+    // Метод для добавления строки с расписанием в TableLayout
     private void addScheduleRow(TableLayout tableLayout, String time, String subject, String teacher, String place) {
         // Добавление TextView для времени
         TableRow tableRowTime = new TableRow(this);
         TextView textViewTime = new TextView(this);
         textViewTime.setText(time);
+        textViewTime.setTextColor(Color.parseColor("#2975CC"));
+        textViewTime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21);
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.montserrat_eb);
+        textViewTime.setTypeface(typeface);
+
         tableRowTime.addView(textViewTime);
         tableLayout.addView(tableRowTime, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
@@ -90,7 +154,10 @@ public class ScheduleActivity extends AppCompatActivity {
         TableRow tableRowSubject = new TableRow(this);
         TextView textViewSubject = new TextView(this);
         textViewSubject.setText(subject);
-        textViewSubject.setTextColor(Color.RED); // Пример установки цвета текста
+        textViewSubject.setTextColor(Color.BLACK);
+        textViewSubject.setTextSize(TypedValue.COMPLEX_UNIT_SP, 21);
+        Typeface typeface2 = ResourcesCompat.getFont(this, R.font.montserrat_b);
+        textViewSubject.setTypeface(typeface2);
         tableRowSubject.addView(textViewSubject);
         tableLayout.addView(tableRowSubject, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
@@ -98,7 +165,10 @@ public class ScheduleActivity extends AppCompatActivity {
         TableRow tableRowTeacher = new TableRow(this);
         TextView textViewTeacher = new TextView(this);
         textViewTeacher.setText(teacher);
-        textViewTeacher.setTextColor(Color.MAGENTA); // Пример установки цвета текста
+        textViewTeacher.setTextColor(Color.parseColor("#8E8E8E"));
+        textViewTeacher.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        Typeface typeface3 = ResourcesCompat.getFont(this, R.font.montserrat_m);
+        textViewTeacher.setTypeface(typeface3);
         tableRowTeacher.addView(textViewTeacher);
         tableLayout.addView(tableRowTeacher, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
@@ -106,9 +176,14 @@ public class ScheduleActivity extends AppCompatActivity {
         TableRow tableRowPlace = new TableRow(this);
         TextView textViewPlace = new TextView(this);
         textViewPlace.setText(place);
-        textViewPlace.setTextColor(Color.YELLOW); // Пример установки цвета текста
+        textViewPlace.setTextColor(Color.parseColor("#8E8E8E"));
+        textViewPlace.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        Typeface typeface4 = ResourcesCompat.getFont(this, R.font.montserrat_m);
+        textViewPlace.setTypeface(typeface4);
         tableRowPlace.addView(textViewPlace);
         tableLayout.addView(tableRowPlace, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+        createSpace(tableLayout, 13);
     }
 
     @Override

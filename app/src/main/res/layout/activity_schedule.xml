@@ -25,16 +25,27 @@
             android:track="@null"
             tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="634dp">
+            android:layout_height="587dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="22dp"
+            android:fillViewport="true">
 
-            <TableLayout
-                android:id="@+id/tableLayoutSchedule"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </ScrollView>
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:id="@+id/tableLayoutSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
