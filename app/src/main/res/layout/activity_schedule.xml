@@ -15,10 +15,15 @@
 
         <Switch
             android:id="@+id/schSwitch"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Switch"
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            android:layout_gravity="center"
+            android:layout_marginTop="14.5dp"
+            android:background="@null"
+            android:button="@drawable/switch_schedule"
+            android:thumb="@null"
+            android:track="@null"
+            tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
         <ScrollView
             android:layout_width="match_parent"
