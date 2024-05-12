@@ -1,13 +1,14 @@
 package com.my.voenmeh.Authentication;
 
-import android.util.Log;
-import android.util.Pair;
+import static com.my.voenmeh.Utils.Constants.DAYS_IN_WEEK;
+import static com.my.voenmeh.Utils.Constants.EVEN_WEEKS_NUMBER;
+import static com.my.voenmeh.Utils.Constants.ODD_WEEKS_NUMBER;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.util.Log;
+
+import java.time.LocalDate;
 
 import com.ibm.icu.text.Transliterator;
-import com.my.voenmeh.Activities.ScheduleActivity;
 import com.my.voenmeh.Schedule.Schedule;
 
 import org.jsoup.nodes.Element;
@@ -21,9 +22,9 @@ public class UserRepository { //статический класс, в течен
     static String login = "";
     static String password = "";
     static String group = "";
-    static HashSet<String> Groups = new HashSet<String>();
-    static HashMap<String, Integer> Subjects = new HashMap<String, Integer>();
-    static int EvenWeeksInSem = 8, OddWeeksInSem = 8;
+    static HashSet<String> Groups = new HashSet<>();
+    static HashMap<String, ArrayList<String>> Subjects = new HashMap<>();
+    static int EvenWeeksInSem = EVEN_WEEKS_NUMBER, OddWeeksInSem = ODD_WEEKS_NUMBER;
     static Schedule StudentSchedule = new Schedule();
 
     public static void SetLogin(String log){ //сеттер
@@ -36,6 +37,10 @@ public class UserRepository { //статический класс, в течен
 
     public static String GetGroup(){
         return group;
+    }
+
+    public static HashMap<String, ArrayList<String>> GetSubjectDates(){
+        return Subjects;
     }
 
     private static String Convert(String value, String type){ //преобразование группы в логин и логина в группу
@@ -67,41 +72,66 @@ public class UserRepository { //статический класс, в течен
         return result;
     }
 
-    public static void PullGroups(Elements GroupsInHtml){
+    public static void FillGroups(Elements GroupsInHtml){
         for(Element group : GroupsInHtml){
             Groups.add(group.text());
         }
     }
 
-    public static void GetSchedule(){
-        if(!Subjects.isEmpty()){ //класс статический, достаточно заполнитить один раз
+    public static void GetSchedule() {
+        if (!Subjects.isEmpty()) { //класс статический, достаточно заполнитить один раз
             return;
         }
-        StudentSchedule.PullSchedule("О721Б"); //заменить на group
+        StudentSchedule.PullSchedule("09С32"); //заменить на group
 
-        //циклы считают, сколько раз встречается каждый предмет на четной неделе
-        for(Schedule.Day day : StudentSchedule.GetWeek(true)){
-            for(String CurrentSubject : day.Get("subject")){
-                if(!Subjects.containsKey(CurrentSubject)){
-                    Subjects.put(CurrentSubject, EvenWeeksInSem);
-                }
-                else{
-                    Subjects.replace(CurrentSubject, Subjects.get(CurrentSubject) + EvenWeeksInSem);
-                }
-            }//по ключy CurrentSubject получаем инт,
-        }//где значение - кол-во занятий по предмету в семе
-
-        //циклы считают, сколько раз встречается каждый предмет на нечетной неделе
-        for(Schedule.Day day : StudentSchedule.GetWeek(false)){
-            for(String CurrentSubject : day.Get("subject")){
-                if(!Subjects.containsKey(CurrentSubject)){
-                    Subjects.put(CurrentSubject, OddWeeksInSem);
-                }
-                else{
-                    Subjects.replace(CurrentSubject, Subjects.get(CurrentSubject) + OddWeeksInSem);
+        //инициализация словаря
+        for (Schedule.Day day : StudentSchedule.GetWeek(true)) {
+            for (String CurrentSubject : day.Get("subject")) {
+                if (!Subjects.containsKey(CurrentSubject)) {
+                    Subjects.put(CurrentSubject, new ArrayList<>());
                 }
             }
         }
+        for (Schedule.Day day : StudentSchedule.GetWeek(false)) {
+            for (String CurrentSubject : day.Get("subject")) {
+                if (!Subjects.containsKey(CurrentSubject)) {
+                    Subjects.put(CurrentSubject, new ArrayList<>());
+                }
+            }
+        }
+
+        String CurrentDay;
+        int DayDifference, DaysProcessed;
+        LocalDate DayDate = LocalDate.of(2024, 2, 5); //ставим дату начала сема
+        boolean isEvenWeek = false;
+        for(int i = 0; i < EvenWeeksInSem + OddWeeksInSem; i++){ //цикл для всех недель в семе
+            ArrayList<Schedule.Day> CurrentWeek = StudentSchedule.GetWeek(isEvenWeek);
+            DaysProcessed = 0;
+            for(Schedule.Day day : CurrentWeek){
+                CurrentDay = DayInRussian(DayDate.getDayOfWeek().toString()); //день недели на русском, на который выпадает рассматриваемое число
+                if(!CurrentDay.equals(day.dayName)){ //двигаем дату, если текущее число - неучебный день
+                    DayDifference = DayNumber(day.dayName) - DayNumber(CurrentDay); //вычисляем длину неучебного пробела
+                    DayDate = DayDate.plusDays(DayDifference);
+                }
+                String CurrentDate = DayDate.toString().substring(8) + "." + DayDate.toString().substring(5, 7);
+                for(String CurrentSubject : day.Get("subject")){ //цикл для всех предметов в дне
+                    Subjects.get(CurrentSubject).add(CurrentDate); //добавляем в массив дат по ключу предмета дату дня
+                }
+                DaysProcessed++;
+                if(DaysProcessed == CurrentWeek.size()){ //двигаем дату на воскресенье, когда обработали последний рабочий день
+                    DayDifference = DAYS_IN_WEEK - DayNumber(day.dayName);
+                    DayDate = DayDate.plusDays(DayDifference);
+                }
+                DayDate = DayDate.plusDays(1); //двигаем дату на 1
+            }
+            isEvenWeek = !isEvenWeek; //чередуем неделю
+        }
+        /*for(String sub : Subjects.keySet()){
+            Log.d("MyTag", sub + ": " + Subjects.get(sub).size());
+            for(String date : Subjects.get(sub)){
+                Log.d("MyTag", date);
+            } //ПРОВЕРКА ДАТ В КОНСОЛИ (НА МОЙ ВЗГЛЯД ВСЁ НОРМ, НО Я НЕ ПРОФ ТЕСТИРОВЩИК))
+        }*/
     }
 
     public static boolean CorrectLogin(){ //допилить проверку корректности логина в зависимости от
@@ -120,5 +150,44 @@ public class UserRepository { //статический класс, в течен
     public static boolean CorrectPassword(){ //также сверять пароли с базой
         return true;
     }
+
+    public static String DayInRussian(String DayInEnglish){
+        switch(DayInEnglish){
+            case "MONDAY":
+                return "Понедельник";
+            case "TUESDAY":
+                return "Вторник";
+            case "WEDNESDAY":
+                return "Среда";
+            case "THURSDAY":
+                return "Четверг";
+            case "FRIDAY":
+                return "Пятница";
+            case "SATURDAY":
+                return "Суббота";
+            default:
+                return "";
+        }
+    }
+
+    public static int DayNumber(String Day){
+        switch(Day){
+            case "Понедельник":
+                return 1;
+            case "Вторник":
+                return 2;
+            case "Среда":
+                return 3;
+            case "Четверг":
+                return 4;
+            case "Пятница":
+                return 5;
+            case "Суббота":
+                return 6;
+            default:
+                return -1000;
+        }
+    }
 }
+
 

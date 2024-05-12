@@ -25,10 +25,10 @@ public class Schedule {
 
         private Day(String DayName) {
             dayName = DayName;
-            time = new ArrayList<String>();
-            subject = new ArrayList<String>();
-            teacher = new ArrayList<String>();
-            place = new ArrayList<String>();
+            time = new ArrayList<>();
+            subject = new ArrayList<>();
+            teacher = new ArrayList<>();
+            place = new ArrayList<>();
         }
 
         public void Append(String _time, String _subject, String _teacher, String _place) {
@@ -66,8 +66,8 @@ public class Schedule {
     }
 
     public Schedule(){
-        EvenWeek = new ArrayList<Day>();
-        OddWeek = new ArrayList<Day>();
+        EvenWeek = new ArrayList<>();
+        OddWeek = new ArrayList<>();
     }
 
     public void PullSchedule(String Group) {

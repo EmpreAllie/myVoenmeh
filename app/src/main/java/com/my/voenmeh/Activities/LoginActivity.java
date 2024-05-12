@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             String url = "http://www.voenmeh.com/schedule_green.php?semestr_id=" + semester_id + "&page_mode=group";
             WebSchedule = Jsoup.connect(url).get();
             Elements groups = WebSchedule.getElementsByTag("option"); //берем группы
-            UserRepository.PullGroups(groups); //заполняем в user repositoriy хешсет с группами
+            UserRepository.FillGroups(groups); //заполняем в user repositoriy хешсет с группами
         } catch (Exception e) {
             Log.d("Exceptions", e.toString());
         }
@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pullGroups();
         setContentView(R.layout.login_activity);
         // Находим элемент TextView по его ID
         TextView textView = findViewById(R.id.textView4);

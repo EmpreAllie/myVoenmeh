@@ -24,6 +24,8 @@ public class TrackerActivity extends AppCompatActivity {
      */
 
 
+
+
     private void getSubjects() {
         Thread GettingSubjects; //второй поток во избежание перегрузки мэйна
         Runnable runnable;
