@@ -17,8 +17,11 @@ public class Schedule {
     ArrayList<Day> OddWeek;
 
     public class Day {
-        ArrayList<String> time, subject, teacher, place;
-        String dayName;
+        public ArrayList<String> time;
+        public ArrayList<String> subject;
+        public ArrayList<String> teacher;
+        public ArrayList<String> place;
+        public String dayName;
 
         private Day(String DayName) {
             dayName = DayName;

@@ -7,19 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ScheduleActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp">
 
-        <TextView
-            android:id="@+id/textViewSchedule"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/schSwitch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </ScrollView>
+            android:text="Switch"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="634dp">
+
+            <TableLayout
+                android:id="@+id/tableLayoutSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
