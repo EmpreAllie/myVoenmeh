@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TrackerActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/Attendance"
-        android:textColor="@color/blue_main"
-        android:textSize="40sp" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_tracker"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="1dp"
+        android:theme="@style/AB"
+        app:title="Трекер"
+        app:titleTextColor="@color/black" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

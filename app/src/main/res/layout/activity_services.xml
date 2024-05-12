@@ -12,23 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="299.430dp"
-            android:layout_marginTop="28.120dp"
-            android:background="@null"
-            app:srcCompat="@drawable/ahahah" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="36.923dp"
-            android:layout_height="34.123dp"
-            android:layout_marginLeft="14.770dp"
-            android:layout_marginTop="13.120dp"
-            app:srcCompat="@drawable/icon_user" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_tracker"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="1dp"
+            android:theme="@style/AB"
+            app:title="Сервисы"
+            app:titleTextColor="@color/black" />
 
         <TextView
             android:id="@+id/services_word"
@@ -47,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="159dp"
-            android:layout_marginTop="227.527dp"
+            android:layout_marginTop="177.527dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -73,7 +65,7 @@
             android:layout_width="50.5dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="274.167dp"
-            android:layout_marginTop="124.193dp"
+            android:layout_marginTop="74.193dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -99,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35.667dp"
-            android:layout_marginTop="227.527dp"
+            android:layout_marginTop="177.527dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -125,7 +117,7 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="139.163dp"
-            android:layout_marginTop="124.193dp"
+            android:layout_marginTop="74.193dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -151,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35.667dp"
-            android:layout_marginTop="124.193dp"
+            android:layout_marginTop="74.193dp"
             android:orientation="vertical">
 
             <ImageButton
