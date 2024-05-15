@@ -66,24 +66,12 @@ public class TrackerActivity extends AppCompatActivity {
     }
 
     private void displaySubjects() {
-        //Set<String> setOfSubjects = new HashSet<>();
-
-        // TODO разместить на экране ExpandableList с названиями предметов
-
         expandableListView = findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData();
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
-/*
-        for (String s : UserRepository.GetSubjectDates().keySet()) {
-            String subject = s.substring(s.indexOf(' ') + 1); // здесь хранится название предмета без указания типа пары
-            setOfSubjects.add(subject);
-        }
 
-        for (String s: setOfSubjects) {
-
-        }*/
     }
 
     @Override
