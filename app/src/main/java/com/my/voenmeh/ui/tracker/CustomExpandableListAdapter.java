@@ -26,9 +26,6 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-
-        // TODO здесь надо вернуть количество предметов AKA Sizeof(Set<> Subjects)
-
         return this.expandableListTitle.size();
     }
 

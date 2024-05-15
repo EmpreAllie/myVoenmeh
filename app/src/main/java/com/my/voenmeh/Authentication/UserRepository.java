@@ -82,7 +82,7 @@ public class UserRepository { //статический класс, в течен
         if (!Subjects.isEmpty()) { //класс статический, достаточно заполнитить один раз
             return;
         }
-        StudentSchedule.PullSchedule("09С32"); //заменить на group
+        StudentSchedule.PullSchedule(group); //заменить на group
 
         //инициализация словаря
         for (Schedule.Day day : StudentSchedule.GetWeek(true)) {
@@ -135,15 +135,16 @@ public class UserRepository { //статический класс, в течен
     }
 
     public static boolean CorrectLogin(){ //допилить проверку корректности логина в зависимости от
+        /*
         if(login.length() == 1){ //имеющихся групп (мудл апи или че там ебать)
             return true;
-        }/*
+        }*/
         String currentGroup = Convert(login, "group");
         if(Groups.contains(currentGroup)){
             login = login.toLowerCase(); //в подравняем регистр на всякий, а то при проверке он не учитывается
             group = currentGroup;
             return true;
-        }*/
+        }
         return false;
     }
 
