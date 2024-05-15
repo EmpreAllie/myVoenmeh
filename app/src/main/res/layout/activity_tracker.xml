@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TrackerActivity">
 
-    <TextView
+    <ExpandableListView
+        android:id="@+id/expandableListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/Attendance"
-        android:textColor="@color/blue_main"
-        android:textSize="40sp" />
+        android:divider="@color/blue_main"
+        android:dividerHeight="1dp"
+        android:paddingBottom="85dp">
+
+    </ExpandableListView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

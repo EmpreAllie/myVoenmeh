@@ -125,8 +125,8 @@ public class UserRepository { //статический класс, в течен
                 DayDate = DayDate.plusDays(1); //двигаем дату на 1
             }
             isEvenWeek = !isEvenWeek; //чередуем неделю
-        }
-        /*for(String sub : Subjects.keySet()){
+        }/*
+        for(String sub : Subjects.keySet()){
             Log.d("MyTag", sub + ": " + Subjects.get(sub).size());
             for(String date : Subjects.get(sub)){
                 Log.d("MyTag", date);
