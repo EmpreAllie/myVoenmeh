@@ -2,6 +2,7 @@ package com.my.voenmeh.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
@@ -23,9 +24,6 @@ public class TrackerActivity extends AppCompatActivity {
      * при первом открытии этого активити
      */
 
-
-
-
     private void getSubjects() {
         Thread GettingSubjects; //второй поток во избежание перегрузки мэйна
         Runnable runnable;
@@ -37,11 +35,18 @@ public class TrackerActivity extends AppCompatActivity {
         };
         GettingSubjects = new Thread(runnable); //запускаем поток
         GettingSubjects.start();
+        try {
+            GettingSubjects.join(); // Ожидание завершения потока
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSubjects();
+
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
