@@ -84,15 +84,17 @@ public class UserRepository { //статический класс, в течен
             return;
         }
 
-        StudentSchedule.PullSchedule(group);
+        //StudentSchedule.PullSchedule(group);
 
         //инициализация словаря
         for (Schedule.Day day : StudentSchedule.GetWeek(true)) {
             for (String CurrentSubject : day.Get("subject")) {
                 if (!Subjects.containsKey(CurrentSubject)) {
                     Subjects.put(CurrentSubject, new ArrayList<>());
-
-        StudentSchedule.PullSchedule("О721Б"); //заменить на group
+                }
+            }
+        }
+        StudentSchedule.PullSchedule(group); //заменить на group
         Set<String> lek = new HashSet<>();
         Set<String> pr = new HashSet<>();
         Set<String> lab = new HashSet<>();
