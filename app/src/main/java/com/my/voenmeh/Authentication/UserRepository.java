@@ -17,6 +17,7 @@ import org.jsoup.select.Elements;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class UserRepository { //статический класс, в течение работы проги хранит персональные данные
     static String login = "";
@@ -79,29 +80,76 @@ public class UserRepository { //статический класс, в течен
     }
 
     public static void GetSchedule() {
-        if (!Subjects.isEmpty()) { //класс статический, достаточно заполнитить один раз
+        if (!Subjects.isEmpty()) { //класс статический, достаточно заполнить один раз
             return;
         }
-        StudentSchedule.PullSchedule("09С32"); //заменить на group
+
+        StudentSchedule.PullSchedule(group);
 
         //инициализация словаря
         for (Schedule.Day day : StudentSchedule.GetWeek(true)) {
             for (String CurrentSubject : day.Get("subject")) {
                 if (!Subjects.containsKey(CurrentSubject)) {
                     Subjects.put(CurrentSubject, new ArrayList<>());
+
+        StudentSchedule.PullSchedule("О721Б"); //заменить на group
+        Set<String> lek = new HashSet<>();
+        Set<String> pr = new HashSet<>();
+        Set<String> lab = new HashSet<>();
+        Set<String> multiple = new HashSet<>();
+        boolean week = true;
+        for(int j = 0; j < 2; j++){
+            for (Schedule.Day day : StudentSchedule.GetWeek(week)) {
+                for (String CurrentSubject : day.Get("subject")) {
+                    if(CurrentSubject.startsWith("пр")){
+                        pr.add(CurrentSubject.substring(3));
+                    }
+                    if(CurrentSubject.startsWith("лек")){
+                        lek.add(CurrentSubject.substring(4));
+                    }
+                    if(CurrentSubject.startsWith("лаб")){
+                        lab.add(CurrentSubject.substring(4));
+                    }
+
                 }
             }
+            week = !week;
         }
-        for (Schedule.Day day : StudentSchedule.GetWeek(false)) {
-            for (String CurrentSubject : day.Get("subject")) {
-                if (!Subjects.containsKey(CurrentSubject)) {
-                    Subjects.put(CurrentSubject, new ArrayList<>());
-                }
+        for(String CurrentSubject : pr){ //вычисляем предметы, имеющие и практики и лекции/лабы
+            if(lek.contains(CurrentSubject) || lab.contains(CurrentSubject)){
+                multiple.add(CurrentSubject);
+            }
+        }
+        for(String CurrentSubject : lek){ //вычисляем предметы, имеющие и лекции и лабы(без практик)
+            if(lab.contains(CurrentSubject)){
+                multiple.add(CurrentSubject);
             }
         }
 
-        String CurrentDay;
-        int DayDifference, DaysProcessed;
+        //инициализация словаря
+        String actual = "";
+        for(int j = 0; j < 2; j++){
+            for (Schedule.Day day : StudentSchedule.GetWeek(week)) {
+                for (String CurrentSubject : day.Get("subject")) {
+                    if(CurrentSubject.startsWith("пр")){
+                        actual = CurrentSubject.substring(3);
+                    }
+                    if(CurrentSubject.startsWith("лек") || CurrentSubject.startsWith("лаб")){
+                        actual = CurrentSubject.substring(4);
+                    }
+                    if(multiple.contains(actual)){
+                        Subjects.put(actual, new ArrayList<>());
+                    }
+                    else{
+                        Subjects.put(CurrentSubject, new ArrayList<>());
+                    }
+                }
+            }
+            week = !week;
+        }
+
+        String CurrentDay, extra;
+        int DayDifference, DaysProcessed, end_index = 0;
         LocalDate DayDate = LocalDate.of(2024, 2, 5); //ставим дату начала сема
         boolean isEvenWeek = false;
         for(int i = 0; i < EvenWeeksInSem + OddWeeksInSem; i++){ //цикл для всех недель в семе
@@ -115,7 +163,23 @@ public class UserRepository { //статический класс, в течен
                 }
                 String CurrentDate = DayDate.toString().substring(8) + "." + DayDate.toString().substring(5, 7);
                 for(String CurrentSubject : day.Get("subject")){ //цикл для всех предметов в дне
-                    Subjects.get(CurrentSubject).add(CurrentDate); //добавляем в массив дат по ключу предмета дату дня
+                    actual = "";
+                    if(CurrentSubject.startsWith("пр")){
+                        actual = CurrentSubject.substring(3);
+                        end_index = 2;
+                    }
+                    if(CurrentSubject.startsWith("лек") || CurrentSubject.startsWith("лаб")){
+                        actual = CurrentSubject.substring(4);
+                        end_index = 3;
+                    }
+                    if(Subjects.containsKey(actual)){
+                        extra = " " + CurrentSubject.substring(0, end_index);
+                        CurrentSubject = actual;
+                    }
+                    else{
+                        extra = "";
+                    }
+                    Subjects.get(CurrentSubject).add(CurrentDate + extra); //добавляем в массив дат по ключу предмета дату дня
                 }
                 DaysProcessed++;
                 if(DaysProcessed == CurrentWeek.size()){ //двигаем дату на воскресенье, когда обработали последний рабочий день
@@ -125,8 +189,8 @@ public class UserRepository { //статический класс, в течен
                 DayDate = DayDate.plusDays(1); //двигаем дату на 1
             }
             isEvenWeek = !isEvenWeek; //чередуем неделю
-        }
-        /*for(String sub : Subjects.keySet()){
+        }/*
+        for(String sub : Subjects.keySet()){
             Log.d("MyTag", sub + ": " + Subjects.get(sub).size());
             for(String date : Subjects.get(sub)){
                 Log.d("MyTag", date);
@@ -135,15 +199,16 @@ public class UserRepository { //статический класс, в течен
     }
 
     public static boolean CorrectLogin(){ //допилить проверку корректности логина в зависимости от
+        /*
         if(login.length() == 1){ //имеющихся групп (мудл апи или че там ебать)
             return true;
-        }/*
+        }*/
         String currentGroup = Convert(login, "group");
         if(Groups.contains(currentGroup)){
             login = login.toLowerCase(); //в подравняем регистр на всякий, а то при проверке он не учитывается
             group = currentGroup;
             return true;
-        }*/
+        }
         return false;
     }
 
