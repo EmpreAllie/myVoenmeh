@@ -41,7 +41,9 @@ import org.jsoup.select.Elements;
 
 public class ScheduleActivity extends AppCompatActivity {
 
+
     String GroupToShow = UserRepository.GetGroup();//"09С32";
+
     Schedule schedule = new Schedule();
 
     private void pullSchedule() {
@@ -78,9 +80,9 @@ public class ScheduleActivity extends AppCompatActivity {
                 isFirstDayAdded = true;
             } else {
                 // Добавление разделителя перед остальными днями
-                createSpace(tableLayout, 20);
+                createSpace(tableLayout, 7);
                 addSeparator(tableLayout);
-                createSpace(tableLayout, 20);
+                createSpace(tableLayout, 7);
                 addDayTitleRow(tableLayout, day.dayName);
                 createSpace(tableLayout, 7);
             }

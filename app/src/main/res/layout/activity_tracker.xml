@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TrackerActivity">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="1dp"
+        android:theme="@style/AB"
+        app:title="Трекер"
+        app:titleTextColor="@color/black" />
+
     <ExpandableListView
         android:id="@+id/expandableListView"
         android:layout_width="wrap_content"
@@ -16,6 +27,7 @@
         android:paddingBottom="85dp">
 
     </ExpandableListView>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
