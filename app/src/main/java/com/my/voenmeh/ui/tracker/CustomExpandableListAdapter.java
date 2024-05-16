@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.my.voenmeh.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context mContext;
     private List<String> expandableListTitle;
-    private HashMap<String, List<String>> expandableListDetail;
+    private HashMap<String, ArrayList<String>> expandableListDetail;
 
-    public CustomExpandableListAdapter(Context mContext, List<String> expandableListTitle, HashMap<String, List<String>> expandableListDetail) {
+    public CustomExpandableListAdapter(Context mContext, List<String> expandableListTitle, HashMap<String, ArrayList<String>> expandableListDetail) {
         this.mContext = mContext;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
