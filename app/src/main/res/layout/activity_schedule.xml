@@ -7,10 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ScheduleActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:elevation="1dp"
+        android:theme="@style/AB"
+        app:title="Расписание"
+        app:titleTextColor="@color/black" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@android:color/transparent"
+        app:itemIconTint="@drawable/bn_main"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_nav_menu" />
 
     <LinearLayout
+        android:id="@+id/schedule_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nav_view"
+        android:layout_below="@id/toolbar"
         android:orientation="vertical">
 
         <Switch
@@ -27,9 +51,9 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="587dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="14.5dp"
             android:fillViewport="true">
 
             <LinearLayout
@@ -47,18 +71,5 @@
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@android:color/transparent"
-        app:itemIconTint="@drawable/bn_main"
-        app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_nav_menu" />
-
 
 </RelativeLayout>

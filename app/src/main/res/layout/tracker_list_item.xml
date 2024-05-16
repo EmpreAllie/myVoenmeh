@@ -12,8 +12,8 @@
         android:fontFamily="@font/montserrat_m"
         android:paddingTop="6dp"
         android:text="Item"
-        android:textSize="16sp"
-        android:textColor="@color/black">
+        android:textColor="@color/black"
+        android:textSize="16sp">
 
     </TextView>
 
@@ -22,8 +22,9 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="40dp"
-
+        android:background="@null"
         android:buttonTint="@color/blue_main"
-        />
+        android:checked="false"
+        android:focusable="false" />
 
 </RelativeLayout>

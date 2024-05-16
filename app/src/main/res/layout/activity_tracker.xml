@@ -7,35 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TrackerActivity">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:background="@color/white"
         android:elevation="1dp"
         android:theme="@style/AB"
         app:title="Трекер"
         app:titleTextColor="@color/black" />
 
-    <ExpandableListView
-        android:id="@+id/expandableListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="0dp"
-        android:divider="@color/blue_main"
-        android:dividerHeight="1dp"
-        android:paddingBottom="85dp">
-
-    </ExpandableListView>
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@android:color/transparent"
@@ -43,5 +29,13 @@
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu" />
 
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/nav_view"
+        android:layout_below="@id/toolbar"
+        android:divider="@color/blue_main"
+        android:dividerHeight="1dp" />
 
 </RelativeLayout>

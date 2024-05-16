@@ -7,16 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MailActivity">
 
-    <WebView
-        android:id="@+id/mailView"
-        android:layout_width="match_parent"
-        android:layout_height="664dp" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:background="?android:attr/windowBackground"
         app:itemBackground="@android:color/transparent"
@@ -24,5 +18,10 @@
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_nav_menu" />
 
+    <WebView
+        android:id="@+id/mailView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/nav_view" />
 
 </RelativeLayout>

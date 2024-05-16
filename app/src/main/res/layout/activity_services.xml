@@ -7,191 +7,210 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ServicesActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="1dp"
+        android:theme="@style/AB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Сервисы"
+        app:titleTextColor="@color/black" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@android:color/transparent"
+        app:itemIconTint="@drawable/bn_main"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="299.430dp"
-            android:layout_marginTop="28.120dp"
-            android:background="@null"
-            app:srcCompat="@drawable/ahahah" />
+    <TableLayout
+        android:id="@+id/services_content"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="36.923dp"
-            android:layout_height="34.123dp"
-            android:layout_marginLeft="14.770dp"
-            android:layout_marginTop="13.120dp"
-            app:srcCompat="@drawable/icon_user" />
 
-        <TextView
-            android:id="@+id/services_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="58.010dp"
-            android:layout_marginTop="17.120dp"
-            android:fontFamily="@font/montserrat_b"
-            android:text="Сервисы"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+        <TableRow>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="159dp"
-            android:layout_marginTop="227.527dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton8"
+            <LinearLayout
+                android:id="@+id/button_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-
-                app:srcCompat="@drawable/button_courses" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_m"
                 android:gravity="center"
-                android:text="Курсы"
-                android:textColor="@color/black" />
-        </LinearLayout>
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="50.5dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="274.167dp"
-            android:layout_marginTop="124.193dp"
-            android:gravity="center"
-            android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:srcCompat="@drawable/button_map" />
 
-            <ImageButton
-                android:id="@+id/imageButton5"
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_m"
+                    android:gravity="center"
+                    android:text="Карта"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-
-                app:srcCompat="@drawable/button_card" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_m"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="46dp"
                 android:gravity="center"
-                android:text="Услуги"
-                android:textColor="@color/black" />
-        </LinearLayout>
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/button_3"
+                app:layout_constraintStart_toEndOf="@+id/button_1"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35.667dp"
-            android:layout_marginTop="227.527dp"
-            android:gravity="center"
-            android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/imageButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:srcCompat="@drawable/button_library" />
 
-            <ImageButton
-                android:id="@+id/imageButton7"
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_m"
+                    android:gravity="center"
+                    android:text="Библиотека"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/button_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-
-                app:srcCompat="@drawable/button_merch" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_m"
                 android:gravity="center"
-                android:text="Мерч"
-                android:textColor="@color/black" />
-        </LinearLayout>
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/button_4"
+                app:layout_constraintStart_toEndOf="@+id/button_2"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="139.163dp"
-            android:layout_marginTop="124.193dp"
-            android:gravity="center"
-            android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/imageButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:srcCompat="@drawable/button_card" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_m"
+                    android:gravity="center"
+                    android:text="Услуги"
+                    android:textColor="@color/black" />
+            </LinearLayout>
 
-                app:srcCompat="@drawable/button_library" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_m"
-                android:gravity="center"
-                android:text="Библиотека"
-                android:textColor="@color/black" />
-        </LinearLayout>
+        </TableRow>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35.667dp"
-            android:layout_marginTop="124.193dp"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-
-                app:srcCompat="@drawable/button_map" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_m"
-                android:gravity="center"
-                android:text="Карта"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="?android:attr/windowBackground"
-            app:itemBackground="@android:color/transparent"
-            app:itemIconTint="@drawable/bn_main"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu" />
+            android:layout_height="wrap_content">
 
-        <fragment
-            android:id="@+id/nav_host_fragment_activity_main"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/mobile_navigation" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="38dp" />
+        </TableRow>
 
-    </RelativeLayout>
+        <TableRow>
+
+            <LinearLayout
+                android:id="@+id/button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/button_5"
+                app:layout_constraintStart_toEndOf="@+id/button_3"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/imageButton7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:srcCompat="@drawable/button_merch" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_m"
+                    android:gravity="center"
+                    android:text="Мерч"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/button_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_4"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/imageButton8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    app:srcCompat="@drawable/button_courses" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_m"
+                    android:gravity="center"
+                    android:text="Курсы"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+        </TableRow>
+
+
+    </TableLayout>
+
+    <fragment
+        android:id="@+id/nav_host_fragment_activity_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:navGraph="@navigation/mobile_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

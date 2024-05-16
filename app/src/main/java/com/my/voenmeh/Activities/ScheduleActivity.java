@@ -72,7 +72,7 @@ public class ScheduleActivity extends AppCompatActivity {
         boolean isFirstDayAdded = false;
 
         // Проход по каждому дню в выбранной неделе
-        for (Schedule.Day day : schedule.GetWeek(isOddWeek)) {
+        for (Schedule.Day day : schedule.GetWeek(!isOddWeek)) {
             // Если первый день еще не добавлен, добавляем заголовок дня без разделителя
             if (!isFirstDayAdded) {
                 addDayTitleRow(tableLayout, day.dayName);
