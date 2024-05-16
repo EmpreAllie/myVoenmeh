@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
@@ -35,18 +36,10 @@ import java.util.List;
 import java.util.Set;
 
 public class TrackerActivity extends AppCompatActivity {
-
-    /**
-     * Сколько конкретного предмета в семе - можно посмотреть
-     * в ХешМапе Subjects в классе userReposiory, она заполняется
-     * при первом открытии этого активити
-     */
-
-
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
-    HashMap<String, List<String>> expandableListDetail;
+    HashMap<String, ArrayList<String>> expandableListDetail;
 
     private void getSubjects() {
         Thread GettingSubjects; //второй поток во избежание перегрузки мэйна
@@ -68,7 +61,7 @@ public class TrackerActivity extends AppCompatActivity {
 
     private void displaySubjects() {
         expandableListView = findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getData();
+        expandableListDetail = UserRepository.GetSubjectDates();//ExpandableListDataPump.getData();
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
