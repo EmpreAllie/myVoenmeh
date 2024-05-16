@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,11 +59,16 @@ public class NewsPost {
             // выделение первой строки жирным шрифтом
             SpannableString spanText = new SpannableString(text);
             StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
+            AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(16, true);
             int newlineIndex = text.indexOf("\n"); // Найдите индекс переноса строки
             if (newlineIndex != -1) { // Проверьте, есть ли перенос строки
+                spanText.setSpan(sizeSpan, 0, text.indexOf("\n"), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
                 spanText.setSpan(boldSpan, 0, newlineIndex, Spannable.SPAN_INCLUSIVE_INCLUSIVE); // Выделяем текст до первого
                 // переноса строки
             }
+            // Изменяем размер выделенной строки
+
+
             postText.setText(spanText);
             // изображение
             postImage = new ImageView(mContext);
