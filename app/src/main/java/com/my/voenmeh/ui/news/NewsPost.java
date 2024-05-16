@@ -3,49 +3,101 @@ package com.my.voenmeh.ui.news;
 import static android.view.ViewGroup.LayoutParams;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.my.voenmeh.Utils.Constants;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import com.my.voenmeh.R;
+import com.my.voenmeh.Utils.Constants;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.ls.LSOutput;
 
 public class NewsPost {
     TextView postText = null;
     ImageView postImage = null;
-    public NewsPost(Context mContext) {
+
+    public NewsPost(Context mContext)
+    {
         NewsRepository nr = new NewsRepository(); // здесь заполняется список из медиа для постов
 
-        // фигня для доступа к вьюшкам в активити
-        Activity a = (Activity) mContext;
-        LinearLayout ll = (LinearLayout) a.findViewById(R.id.news_posts);
-
-        //int count = a.getResources().getInteger(R.integer.NUMBER_OF_POSTS);
+        Activity a = (Activity)mContext;
+        LinearLayout ll = a.findViewById(R.id.news_posts);
 
         for (int index = 0; index < Constants.NUMBER_OF_POSTS; index++) {
+            CardView cardView = new CardView(mContext);
+            cardView.setLayoutParams(new CardView.LayoutParams(
+                    CardView.LayoutParams.MATCH_PARENT, CardView.LayoutParams.WRAP_CONTENT));
+            cardView.setRadius(20f);
+            cardView.setCardElevation(8f);
+            cardView.setUseCompatPadding(true);
 
-            // создание одного текствью
+            LinearLayout cardContent = new LinearLayout(mContext);
+            cardContent.setOrientation(
+                    LinearLayout.VERTICAL); // вертикальная ориентация для текста и изображения
+
+            // текст
             postText = new TextView(mContext);
             postText.setText(nr.listOfPosts.get(index).getText());
-            postText.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-            ll.addView(postText);
+            postText.setLayoutParams(new LinearLayout.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            postText.setPadding(16, 16, 16, 8); // отступы для текста
 
-            // создание одной картинки
+            Typeface typeface = ResourcesCompat.getFont(mContext, R.font.montserrat_r);
+            postText.setTypeface(typeface);
+            postText.setTextSize(14);
+            postText.setTextColor(Color.BLACK);
+
+            // изображение
             postImage = new ImageView(mContext);
             String url = nr.listOfPosts.get(index).getImageUrl();
-            System.out.println("url: " + url);
-            if (url != "") {
+            // проверяем, не пустая ли строка с URL
+            if (!url.isEmpty()) {
                 Picasso.get().load(url).into(postImage);
             }
-            else {
-                String unavailablePath = "https://eagle-sensors.com/wp-content/uploads/unavailable-image.jpg";
-                Picasso.get().load(unavailablePath).into(postImage);
-            }
-            ll.addView(postImage);
+            postImage.setLayoutParams(new LinearLayout.LayoutParams(
+                    LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)); // заполняет всю ширину
+            postImage.setScaleType(ImageView.ScaleType.CENTER_CROP); // масштабирование под размер
+
+            // добавляем обработчик клика на изображение
+            postImage.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View view) { showImageDialog(mContext, url); }
+            });
+
+            // добавляем текст и изображение в cardContent
+            cardContent.addView(postText);
+            cardContent.addView(postImage);
+
+            // добавляем cardContent в CardView
+            cardView.addView(cardContent);
+
+            // добавляем CardView в LinearLayout
+            ll.addView(cardView);
         }
+    }
+
+    private void showImageDialog(Context context, String imageUrl)
+    {
+        // создаём диалоговое окно
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null);
+
+        // настраиваем ImageView в диалоговом окне
+        ImageView imageView = dialogView.findViewById(R.id.image_view);
+        if (!imageUrl.isEmpty()) {
+            Picasso.get().load(imageUrl).into(imageView);
+        }
+
+        // задаём View диалоговому окну
+        builder.setView(dialogView);
+
+        // создаём и показываем диалоговое окно
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

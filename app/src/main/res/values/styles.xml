@@ -17,4 +17,9 @@
         <item name="android:navigationBarColor">@color/white</item>
     </style>
 
+    <style name="AB" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:fontFamily">@font/montserrat_b</item>
+        <item name="android:textSize">27sp</item>
+    </style>
+
 </resources>
