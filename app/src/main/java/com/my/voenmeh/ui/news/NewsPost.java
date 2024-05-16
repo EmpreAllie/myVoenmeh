@@ -34,7 +34,7 @@ public class NewsPost {
             cardView.setLayoutParams(new CardView.LayoutParams(
                     CardView.LayoutParams.MATCH_PARENT, CardView.LayoutParams.WRAP_CONTENT));
             cardView.setRadius(20f);
-            cardView.setCardElevation(8f);
+            cardView.setCardElevation(10f);
             cardView.setUseCompatPadding(true);
 
             LinearLayout cardContent = new LinearLayout(mContext);
@@ -78,6 +78,14 @@ public class NewsPost {
 
             // добавляем CardView в LinearLayout
             ll.addView(cardView);
+
+            // добавляем отступ между постами
+            if (index < Constants.NUMBER_OF_POSTS - 1) {
+                View space = new View(mContext);
+                space.setLayoutParams(new LinearLayout.LayoutParams(
+                        LayoutParams.MATCH_PARENT, 52)); // 52dp отступ
+                ll.addView(space);
+            }
         }
     }
 
