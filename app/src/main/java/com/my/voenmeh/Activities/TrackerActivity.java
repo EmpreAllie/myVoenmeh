@@ -42,6 +42,7 @@ public class TrackerActivity extends AppCompatActivity {
      * при первом открытии этого активити
      */
 
+
     ExpandableListView expandableListView;
     ExpandableListAdapter expandableListAdapter;
     List<String> expandableListTitle;
@@ -71,12 +72,12 @@ public class TrackerActivity extends AppCompatActivity {
         expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSubjects();
+
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
