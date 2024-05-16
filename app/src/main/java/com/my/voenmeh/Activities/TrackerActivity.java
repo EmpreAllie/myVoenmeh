@@ -1,13 +1,20 @@
 package com.my.voenmeh.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +22,17 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.my.voenmeh.Authentication.UserRepository;
 import com.my.voenmeh.R;
+import com.my.voenmeh.ui.tracker.CustomExpandableListAdapter;
+import com.my.voenmeh.ui.tracker.ExpandableListDataPump;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class TrackerActivity extends AppCompatActivity {
 
@@ -23,6 +41,12 @@ public class TrackerActivity extends AppCompatActivity {
      * в ХешМапе Subjects в классе userReposiory, она заполняется
      * при первом открытии этого активити
      */
+
+
+    ExpandableListView expandableListView;
+    ExpandableListAdapter expandableListAdapter;
+    List<String> expandableListTitle;
+    HashMap<String, List<String>> expandableListDetail;
 
     private void getSubjects() {
         Thread GettingSubjects; //второй поток во избежание перегрузки мэйна
@@ -36,11 +60,18 @@ public class TrackerActivity extends AppCompatActivity {
         GettingSubjects = new Thread(runnable); //запускаем поток
         GettingSubjects.start();
         try {
-            GettingSubjects.join(); // Ожидание завершения потока
-        }
-        catch (InterruptedException e) {
+            GettingSubjects.join();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private void displaySubjects() {
+        expandableListView = findViewById(R.id.expandableListView);
+        expandableListDetail = ExpandableListDataPump.getData();
+        expandableListTitle = new ArrayList<>(expandableListDetail.keySet());
+        expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
     }
 
     @Override
@@ -57,6 +88,9 @@ public class TrackerActivity extends AppCompatActivity {
             v.setPadding(0, systemBars.top, 0, 0);
             return insets;
         });
+
+        displaySubjects();
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setSelectedItemId(R.id.navigation_tracker);

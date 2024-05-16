@@ -41,7 +41,7 @@ import org.jsoup.select.Elements;
 
 public class ScheduleActivity extends AppCompatActivity {
 
-    String GroupToShow = "09С32";
+    String GroupToShow = UserRepository.GetGroup();//"09С32";
     Schedule schedule = new Schedule();
 
     private void pullSchedule() {

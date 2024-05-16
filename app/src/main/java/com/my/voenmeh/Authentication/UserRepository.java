@@ -80,9 +80,18 @@ public class UserRepository { //статический класс, в течен
     }
 
     public static void GetSchedule() {
-        if (!Subjects.isEmpty()) { //класс статический, достаточно заполнитить один раз
+        if (!Subjects.isEmpty()) { //класс статический, достаточно заполнить один раз
             return;
         }
+
+        StudentSchedule.PullSchedule(group);
+
+        //инициализация словаря
+        for (Schedule.Day day : StudentSchedule.GetWeek(true)) {
+            for (String CurrentSubject : day.Get("subject")) {
+                if (!Subjects.containsKey(CurrentSubject)) {
+                    Subjects.put(CurrentSubject, new ArrayList<>());
+
         StudentSchedule.PullSchedule("О721Б"); //заменить на group
         Set<String> lek = new HashSet<>();
         Set<String> pr = new HashSet<>();
@@ -101,6 +110,7 @@ public class UserRepository { //статический класс, в течен
                     if(CurrentSubject.startsWith("лаб")){
                         lab.add(CurrentSubject.substring(4));
                     }
+
                 }
             }
             week = !week;
@@ -179,8 +189,8 @@ public class UserRepository { //статический класс, в течен
                 DayDate = DayDate.plusDays(1); //двигаем дату на 1
             }
             isEvenWeek = !isEvenWeek; //чередуем неделю
-        }
-        /*for(String sub : Subjects.keySet()){
+        }/*
+        for(String sub : Subjects.keySet()){
             Log.d("MyTag", sub + ": " + Subjects.get(sub).size());
             for(String date : Subjects.get(sub)){
                 Log.d("MyTag", date);
@@ -189,15 +199,16 @@ public class UserRepository { //статический класс, в течен
     }
 
     public static boolean CorrectLogin(){ //допилить проверку корректности логина в зависимости от
+        /*
         if(login.length() == 1){ //имеющихся групп (мудл апи или че там ебать)
             return true;
-        }/*
+        }*/
         String currentGroup = Convert(login, "group");
         if(Groups.contains(currentGroup)){
             login = login.toLowerCase(); //в подравняем регистр на всякий, а то при проверке он не учитывается
             group = currentGroup;
             return true;
-        }*/
+        }
         return false;
     }
 
