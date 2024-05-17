@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="72dp"
+    android:gravity="center">
 
-    <TextView
-        android:id="@+id/listTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:fontFamily="@font/montserrat_b"
-        android:gravity="center_vertical"
-        android:paddingStart="40dp"
-        android:text="List Group"
-        android:textColor="@color/black"
-        android:textSize="24sp">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_vertical">
 
-    </TextView>
+        <TextView
+            android:id="@+id/listTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_b"
+            android:gravity="start"
+            android:paddingStart="40dp"
+            android:text="List Group"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:indeterminateTint="#ff0000"
+            android:progress="0" />
+    </TableRow>
 
-</RelativeLayout>
+</TableLayout>

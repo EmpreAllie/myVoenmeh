@@ -26,7 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="11.943dp"
-            android:layout_marginTop="102.370dp">
+            android:layout_marginTop="102.370dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
                 android:id="@+id/rad_btn5"
@@ -84,12 +86,14 @@
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="303.080dp"
+            android:layout_marginStart="303.080dp"
             android:layout_marginTop="102.333dp"
             android:background="@null"
             android:button="@drawable/switch_map"
             android:thumb="@null"
             android:track="@null"
+            app:layout_constraintStart_toEndOf="@+id/group1"
+            app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints,UseSwitchCompatOrMaterialXml" />
 
     </RelativeLayout>
