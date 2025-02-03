@@ -6,7 +6,7 @@ Authorization
 ![image](https://github.com/user-attachments/assets/828a455a-c60e-48a1-8dd1-0ca267187dac)
 
    News   
-![image](https://github.com/user-attachments/assets/8b240d0e-43ba-487c-a9bc-d88c99a0e326)
+![image](https://github.com/user-attachments/assets/8b240d0e-43ba-487c-a9bc-d88c99a0e326)   
    Tracker   
    ![image](https://github.com/user-attachments/assets/21eafc3f-3aaa-479a-8611-9a2d11e74ced)   
       Timetable
