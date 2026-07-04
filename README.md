@@ -4,7 +4,6 @@ Mobile app for BSTU "Voenmeh" university students. Built with Kotlin and Java fo
 
 ## Screenshots
 
-[ADD SCREENSHOTS HERE]
 ### Overview
 ![image](https://github.com/user-attachments/assets/0dc358a0-5cc9-41bb-9b6e-9936828184c7)
 
